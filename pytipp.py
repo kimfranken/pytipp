@@ -3,27 +3,36 @@
 Teilnehmer = ["Kim", "Thomas"]
 Spiele = [1, 2, 3] # Liste der Spiele
 
-def ergebnis(spiel):
+def get_ergebnis(spiel):
 	a = [2,0] # nur zum testen manuell eingegeben
 	return a
 
-def tipp(spiel, spieler):
+def get_tipp(spiel, spieler):
 	t = [3,1] # nur zum testen manuell eingegeben
 	return t
 	
+def set_tipp(spiel, spieler, tipp1, tipp2):
+	with open('tipps.txt', 'a') as tippfile:
+		game = str(spiel)
+		player = Teilnehmer[spieler]
+		tipp1string = str(tipp1)
+		tipp2string = str(tipp2)
+		tippfile.write(game + " " + player + " " + tipp1string + " " + tipp2string + "\n")
+	return 0
+	
 def punkte(spiel, spieler):
 	p = 0
-	ergebnisarray = ergebnis(1) # noch keine sinnvolle uebergabe
-	tipparray = tipp(5, 5) # noch keine sinnvolle uebergabe
-	if (ergebnisarray[0]-ergebnisarray[1])	< 0:
-		if (tipparray[0]-tipparray[1])	< 0: # richtiger gewinner
+	ergebnis = get_ergebnis(spiel)
+	tipp = get_tipp(spiel, spieler)
+	if (ergebnis[0]-ergebnis[1])	< 0:
+		if (tipp[0]-tipp[1])	< 0: # richtiger gewinner
 			p +=1
 	else:
-		if (tipparray[0]-tipparray[1])	>= 0:
+		if (tipp[0]-tipp[1])	>= 0:
 			p +=1
-	if (ergebnisarray[0]-ergebnisarray[1] == tipparray[0]-tipparray[1]): # richtiges Verhaeltnis
+	if (ergebnis[0]-ergebnis[1] == tipp[0]-tipp[1]): # richtiges Verhaeltnis
 		p+=1
-	if (ergebnisarray[0] == tipparray[0] and ergebnisarray[1] == tipparray[1]): # komplett richtig getippt
+	if (ergebnis[0] == tipp[0] and ergebnis[1] == tipp[1]): # komplett richtig getippt
 		p+=1	
 	print p
 	return p	
@@ -37,3 +46,5 @@ def gesamtpunkte(spieler):
 	return p
 
 punkte(3, 3) # noch keine sinnvolle uebergabe
+set_tipp(1, 0, 1, 1)
+set_tipp(1, 1, 2, 5)
