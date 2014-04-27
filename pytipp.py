@@ -1,10 +1,16 @@
 #Python Tippspiel
+import json
 
 Teilnehmer = ["Kim", "Thomas"]
 Spiele = [1, 2, 3] # Liste der Spiele
 
 def get_ergebnis(spiel):
-	a = [2,0] # nur zum testen manuell eingegeben
+	with open('data.json') as datafile:
+		daten = json.load(datafile)
+	spielname = "Spiel " + str(spiel)
+	a = daten["Ergebnisse"][spielname]
+	print a
+	print spielname
 	return a
 
 def get_tipp(spiel, spieler):
@@ -48,6 +54,6 @@ def gesamtpunkte(spieler):
 		p += punkte(Spiele[x], sp)
 	return p
 
-punkte(3, 3) # noch keine sinnvolle uebergabe
+punkte(2, 3) # noch keine sinnvolle uebergabe
 set_tipp(1, 0, 1, 1)
 set_tipp(1, 1, 2, 5)

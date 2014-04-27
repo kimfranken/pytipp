@@ -1,0 +1,23 @@
+{
+  "Spieler": [
+	"Kim",
+	"Thomas",
+	"Karl"
+  ],
+  "Ergebnisse": {
+	"Spiel 1": [2,1],
+	"Spiel 2": [4,1]
+  },
+  "Tipps": {
+	"Spiel 1": {
+	  "Kim": [0,1],
+	  "Thomas": [2,1],
+	  "Karl": [1,0]
+	},
+	"Spiel 2": {
+	  "Kim": [1,1],
+	  "Thomas": [2,2],
+	  "Karl": [1,0]
+	}
+  }
+}
