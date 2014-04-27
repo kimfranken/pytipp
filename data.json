@@ -1,23 +1,51 @@
 {
-  "Spieler": [
-	"Kim",
-	"Thomas",
-	"Karl"
-  ],
-  "Ergebnisse": {
-	"Spiel 1": [2,1],
-	"Spiel 2": [4,1]
-  },
-  "Tipps": {
-	"Spiel 1": {
-	  "Kim": [0,1],
-	  "Thomas": [2,1],
-	  "Karl": [1,0]
-	},
-	"Spiel 2": {
-	  "Kim": [1,1],
-	  "Thomas": [2,2],
-	  "Karl": [1,0]
-	}
-  }
+    "Tipps": {
+        "Spiel 2": {
+            "Thomas": [
+                2, 
+                2
+            ], 
+            "Kim": [
+                2, 
+                15
+            ], 
+            "Karl": [
+                1, 
+                0
+            ]
+        }, 
+        "Spiel 1": {
+            "Thomas": [
+                2, 
+                1
+            ], 
+            "Kim": [
+                11, 
+                1
+            ], 
+            "Karl": [
+                42, 
+                42
+            ], 
+            "Lukas": [
+                23, 
+                23
+            ]
+        }
+    }, 
+    "Spieler": [
+        "Kim", 
+        "Thomas", 
+        "Karl"
+    ], 
+    "Ergebnisse": {
+        "Spiel 2": [
+            4, 
+            1
+        ], 
+        "Spiel 1": [
+            2, 
+            1
+        ]
+    }
 }

@@ -1,7 +1,7 @@
 #Python Tippspiel
 import json
 
-Teilnehmer = ["Kim", "Thomas"]
+Teilnehmer = ["Kim", "Thomas", "Karl", "Lukas", "Isa"]
 Spiele = [1, 2, 3] # Liste der Spiele
 
 def get_ergebnis(spiel):
@@ -18,12 +18,23 @@ def get_tipp(spiel, spieler):
 	return t
 	
 def set_tipp(spiel, spieler, tipp1, tipp2):
-	with open('tipps.txt', 'a') as tippfile:
-		game = str(spiel)
-		player = Teilnehmer[spieler]
-		tipp1string = str(tipp1)
-		tipp2string = str(tipp2)
-		tippfile.write(game + " " + player + " " + tipp1string + " " + tipp2string + "\n")
+#	with open('tipps.txt', 'a') as tippfile:
+#		game = str(spiel)
+#		player = Teilnehmer[spieler]
+#		tipp1string = str(tipp1)
+#		tipp2string = str(tipp2)
+#		tippfile.write(game + " " + player + " " + tipp1string + " " + tipp2string + "\n")
+
+	spielnr = "Spiel " + str(spiel)
+	spielername = Teilnehmer[spieler]
+	# ganzes File laden, in daten speichern
+	with open('data.json') as datafile: 
+		daten = json.load(datafile)
+	# tipps in daten eintragen
+	daten["Tipps"][spielnr][spielername] = [tipp1, tipp2]
+	# daten wieder als json komplett neu schreiben
+	with open('data.json', 'w+') as datafile:
+		json.dump(daten, datafile, indent=4)
 	return 0
 	
 def punkte(spiel, spieler):
@@ -55,5 +66,7 @@ def gesamtpunkte(spieler):
 	return p
 
 punkte(2, 3) # noch keine sinnvolle uebergabe
-set_tipp(1, 0, 1, 1)
-set_tipp(1, 1, 2, 5)
+set_tipp(1, 0, 11, 1)
+set_tipp(2, 0, 2, 15)
+set_tipp(1, 2, 42, 42)
+set_tipp(1, 3, 23, 23)
