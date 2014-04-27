@@ -24,16 +24,19 @@ def punkte(spiel, spieler):
 	p = 0
 	ergebnis = get_ergebnis(spiel)
 	tipp = get_tipp(spiel, spieler)
-	if (ergebnis[0]-ergebnis[1])	< 0:
-		if (tipp[0]-tipp[1])	< 0: # richtiger gewinner
-			p +=1
-	else:
-		if (tipp[0]-tipp[1])	>= 0:
-			p +=1
+	if (ergebnis[0]-ergebnis[1]) < 0:
+		if (tipp[0]-tipp[1]) < 0: # richtiger gewinner
+			p += 1
+	elif (ergebnis[0]-ergebnis[1]) > 0:
+		if (tipp[0]-tipp[1]) > 0:
+			p += 1
+	else: # unentschieden
+		if (tipp[0]-tipp[1]) == 0:
+			p += 1
 	if (ergebnis[0]-ergebnis[1] == tipp[0]-tipp[1]): # richtiges Verhaeltnis
-		p+=1
+		p += 1
 	if (ergebnis[0] == tipp[0] and ergebnis[1] == tipp[1]): # komplett richtig getippt
-		p+=1	
+		p += 1	
 	print p
 	return p	
 
