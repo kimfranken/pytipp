@@ -9,22 +9,25 @@ def get_ergebnis(spiel):
 		daten = json.load(datafile)
 	spielname = "Spiel " + str(spiel)
 	a = daten["Ergebnisse"][spielname]
+	
+	print "Spielergebnis von " + spielname + ":"
 	print a
-	print spielname
+	
 	return a
 
 def get_tipp(spiel, spieler):
-	t = [3,1] # nur zum testen manuell eingegeben
+	with open('data.json') as datafile:
+		daten = json.load(datafile)
+	spielname = "Spiel " + str(spiel)
+	player = Teilnehmer[spieler] # sollte wahrscheinlich auch noch durch lesen der json ersetzt werden
+	t = daten["Tipps"][spielname][player]
+	
+	print "Tipp von " + player + ":"
+	print t
+	
 	return t
 	
 def set_tipp(spiel, spieler, tipp1, tipp2):
-#	with open('tipps.txt', 'a') as tippfile:
-#		game = str(spiel)
-#		player = Teilnehmer[spieler]
-#		tipp1string = str(tipp1)
-#		tipp2string = str(tipp2)
-#		tippfile.write(game + " " + player + " " + tipp1string + " " + tipp2string + "\n")
-
 	spielnr = "Spiel " + str(spiel)
 	spielername = Teilnehmer[spieler]
 	# ganzes File laden, in daten speichern
@@ -54,8 +57,12 @@ def punkte(spiel, spieler):
 		p += 1
 	if (ergebnis[0] == tipp[0] and ergebnis[1] == tipp[1]): # komplett richtig getippt
 		p += 1	
-	print p
-	return p	
+	
+	punkte = str(p)
+	spielname = "Spiel " + str(spiel)
+	print "Punkte von " + Teilnehmer[spieler] + " in " + spielname + ": " + punkte
+	
+	return p
 
 def gesamtpunkte(spieler):
 	p = 0
@@ -65,8 +72,8 @@ def gesamtpunkte(spieler):
 		p += punkte(Spiele[x], sp)
 	return p
 
-punkte(2, 3) # noch keine sinnvolle uebergabe
+punkte(2, 2)
 set_tipp(1, 0, 11, 1)
 set_tipp(2, 0, 2, 15)
-set_tipp(1, 2, 42, 42)
+set_tipp(1, 2, 24, 42)
 set_tipp(1, 3, 23, 23)
