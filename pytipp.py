@@ -14,6 +14,18 @@ def get_ergebnis(spiel):
 	print a
 	
 	return a
+	
+def set_ergebnis(spiel, ergebnis1, ergebnis2):
+	spielnr = "Spiel " + str(spiel)
+	# ganzes File laden, in daten speichern
+	with open('data.json') as datafile: 
+		daten = json.load(datafile)
+	# tipps in daten eintragen
+	daten["Ergebnisse"][spielnr] = [ergebnis1, ergebnis2]
+	# daten wieder als json komplett neu schreiben
+	with open('data.json', 'w+') as datafile:
+		json.dump(daten, datafile, indent=4)
+	return 0
 
 def get_tipp(spiel, spieler):
 	with open('data.json') as datafile:
@@ -77,3 +89,4 @@ set_tipp(1, 0, 11, 1)
 set_tipp(2, 0, 2, 15)
 set_tipp(1, 2, 24, 42)
 set_tipp(1, 3, 23, 23)
+set_ergebnis(3, 4, 2)
