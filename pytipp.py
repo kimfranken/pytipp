@@ -46,7 +46,11 @@ def set_tipp(spiel, spieler, tipp1, tipp2):
 	with open('data.json') as datafile: 
 		daten = json.load(datafile)
 	# tipps in daten eintragen
-	daten["Tipps"][spielnr][spielername] = [tipp1, tipp2]
+	try:
+		daten["Tipps"][spielnr][spielername] = [tipp1, tipp2]
+	except:
+		print "SHIT" # hier gibts noch was zu tun!!
+		
 	# daten wieder als json komplett neu schreiben
 	with open('data.json', 'w+') as datafile:
 		json.dump(daten, datafile, indent=4)
@@ -78,15 +82,29 @@ def punkte(spiel, spieler):
 
 def gesamtpunkte(spieler):
 	p = 0
-	sp = spieler
+	spielername = Teilnehmer[spieler]
+	with open('data.json') as datafile:
+		daten = json.load(datafile)
 	# def punkte fuer "spieler" fuer alle spiele auswerten und aufsummieren
-	for x in Spiele:
-		p += punkte(Spiele[x], sp)
+	for x in daten["Ergebnisse"]:
+		print x
+		numberstr = x[6:] # loescht "Spiel "
+		number = int(numberstr)
+		try:
+			daten["Tipps"][x][spielername] 
+			# wirft einen Error wenn es zum Spiel keinen Tipp gibt -> springt aus try block raus, sodass danach nicht mehr auf etwas zugegriffen wird, was nicht existiert.
+			
+			p += punkte(number, spieler)
+		except:
+			print "KEIN TIPP VORHANDEN"
+	print p
 	return p
 
-punkte(2, 2)
-set_tipp(1, 0, 11, 1)
-set_tipp(2, 0, 2, 15)
-set_tipp(1, 2, 24, 42)
-set_tipp(1, 3, 23, 23)
-set_ergebnis(3, 4, 2)
+#punkte(2, 2)
+#set_tipp(1, 0, 11, 1)
+#set_tipp(2, 0, 2, 15)
+#set_tipp(1, 2, 24, 42)
+#set_tipp(1, 3, 23, 23)
+#set_tipp(4, 0, 3, 3)
+#set_ergebnis(6, 3, 2)
+gesamtpunkte(0)
