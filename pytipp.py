@@ -31,7 +31,7 @@ def get_tipp(spiel, spieler):
 	with open('data.json') as datafile:
 		daten = json.load(datafile)
 	spielname = "Spiel " + str(spiel)
-	player = Teilnehmer[spieler] # sollte wahrscheinlich auch noch durch lesen der json ersetzt werden
+	player = Teilnehmer[spieler] 
 	t = daten["Tipps"][spielname][player]
 	
 	print "Tipp von " + player + ":"
@@ -50,6 +50,7 @@ def set_tipp(spiel, spieler, tipp1, tipp2):
 		daten["Tipps"][spielnr][spielername] = [tipp1, tipp2]
 	except:
 		print "SHIT" # hier gibts noch was zu tun!!
+		#daten["Tipps"][spielnr][spielername] = [tipp1, tipp2]
 		
 	# daten wieder als json komplett neu schreiben
 	with open('data.json', 'w+') as datafile:
@@ -105,6 +106,6 @@ def gesamtpunkte(spieler):
 #set_tipp(2, 0, 2, 15)
 #set_tipp(1, 2, 24, 42)
 #set_tipp(1, 3, 23, 23)
-#set_tipp(4, 0, 3, 3)
+set_tipp(4, 0, 3, 3)
 #set_ergebnis(6, 3, 2)
-gesamtpunkte(0)
+#gesamtpunkte(0)
